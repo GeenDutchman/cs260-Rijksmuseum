@@ -15,7 +15,7 @@ document.getElementById("paginator").addEventListener("click", event => {
 function load_usersets() {
     page_button = document.getElementById("paginator");
     const page_num = page_button.value;
-    const url = "https://www.rijksmuseum.nl/api/nl/usersets?key=R0LtHLE4&format=json&pageSize=25&page=" + page_num;
+    const url = "https://www.rijksmuseum.nl/api/nl/usersets?key=R0LtHLE4&format=json&pageSize=50&page=" + page_num;
     fetch(url)
         .then( response => {return response.json();})
         .then( json => {
