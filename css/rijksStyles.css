@@ -1,0 +1,11 @@
+.center {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+
+.btn {
+    width: 40%;
+    min-width: auto;
+    margin: 0.5rem;
+}
