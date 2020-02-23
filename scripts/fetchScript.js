@@ -15,11 +15,10 @@ document.getElementById("paginator").addEventListener("click", event => {
 function load_usersets() {
     page_button = document.getElementById("paginator");
     const page_num = page_button.value;
-    const url = "https://www.rijksmuseum.nl/api/nl/usersets?key=R0LtHLE4&format=json&page=" + page_num;
+    const url = "https://www.rijksmuseum.nl/api/nl/usersets?key=R0LtHLE4&format=json&pageSize=25&page=" + page_num;
     fetch(url)
         .then( response => {return response.json();})
         .then( json => {
-            console.log(json);
             return process_usersets(json);
         }).then(ids => {
             let result = process_ids(ids);
@@ -47,7 +46,6 @@ function process_ids(ids) {
             .then(response => {
                 return response.json();
             }).then(json => {
-                console.log(json);
                 process_for_id(id, json);
             }).catch(error => {
                 console.error(error);
@@ -76,10 +74,12 @@ function process_for_id(id, json) {
         }
         result += "</div>";
         result += "</div>";
-    } else {
-        console.debug("No image for this one");
-    }
+        console.debug(result.length);
 
+    } else {
+        // console.debug("No image for this one");
+    }
     document.getElementById("art-content").innerHTML += result;
+    console.debug(document.getElementById("art-content").innerHTML.length);
 
 }
