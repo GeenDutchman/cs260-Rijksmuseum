@@ -62,9 +62,9 @@ function process_for_id(id, json) {
         const first = set.setItems[0];
 
         result += "<div id='" + set.id + "-div' class='card text-center user-set'>";
-        result += "<a href='" + first.links.web + "'>";
+        // result += "<a href='" + first.links.web + "'>"; // why does this link not work?
         result += "<img class='card-img-top' src='" + first.image.cdnUrl + "' alt='" + first.relation + "' id='" + set.id + "-img' />";
-        result += "</a>";
+        // result += "</a>";
         result += "<p><a href='" + set.links.web + "'>" + set.name + "</a></p>";
         result += "<p>Door \"" + set.user.name + "\" verzameld</p>";
         result += "<div id='" + set.id + "-desc' >";
