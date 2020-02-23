@@ -5,7 +5,7 @@ window.addEventListener("load", event => {
     // if (value === "") {
     //     return;
     // }
-    const url = "https://www.rijksmuseum.nl/api/nl/usersets?key=R0LtHLE4&format=json&page=1&pageSize=10";
+    const url = "https://www.rijksmuseum.nl/api/nl/usersets?key=R0LtHLE4&format=json&page=1";
     fetch(url)
         .then( response => {return response.json();})
         .then( json => {
@@ -48,16 +48,18 @@ function process_for_id(id, json) {
         const set = json.userSet;
         const first = set.setItems[0];
 
-        result += "<div id='" + set.id + "-div' class='card user-set'>";
+        result += "<div id='" + set.id + "-div' class='card text-center user-set'>";
+        result += "<a href='" + first.links.web + "'>";
         result += "<img class='card-img-top' src='" + first.image.cdnUrl + "' alt='" + first.relation + "' id='" + set.id + "-img' />";
+        result += "</a>";
         result += "<p><a href='" + set.links.web + "'>" + set.name + "</a></p>";
-        result += "<p>Door " + set.user.name + " verzameld</p>";
+        result += "<p>Door \"" + set.user.name + "\" verzameld</p>";
         result += "<div id='" + set.id + "-desc' >";
         if (set.description !== null) {
-            result += "<p>" + set.description + " </p>";
+            result += "<p>Beschrijving: " + set.description + " </p>";
         }
         if (first.relationDescription !== null) {
-            result += "<p>" + first.relationDescription + "</p>";
+            result += "<p>Beschrijving van relatie: " + first.relationDescription + "</p>";
         }
         result += "</div>";
         result += "</div>";
