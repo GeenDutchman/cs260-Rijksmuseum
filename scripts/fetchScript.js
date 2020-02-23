@@ -5,16 +5,29 @@ window.addEventListener("load", event => {
     // if (value === "") {
     //     return;
     // }
-    const url = "https://www.rijksmuseum.nl/api/nl/usersets?key=R0LtHLE4&format=json&page=1";
+    load_usersets();
+});
+
+document.getElementById("paginator").addEventListener("click", event => {
+    load_usersets();
+});
+
+function load_usersets() {
+    page_button = document.getElementById("paginator");
+    const page_num = page_button.value;
+    const url = "https://www.rijksmuseum.nl/api/nl/usersets?key=R0LtHLE4&format=json&page=" + page_num;
     fetch(url)
         .then( response => {return response.json();})
         .then( json => {
             console.log(json);
             return process_usersets(json);
         }).then(ids => {
-            return process_ids(ids);
+            let result = process_ids(ids);
+            page_button.value = String(Number(page_num) + 1);
+            return result;
         }).catch( error => {console.error(error);});
-});
+}
+
 
 function process_usersets(json) {
     userIds = [];
